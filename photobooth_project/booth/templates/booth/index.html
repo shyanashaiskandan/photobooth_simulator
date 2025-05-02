@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Booth</title>
+</head>
+<body>
+    <h1>Photo Booth</h1>
+    {% if photo_files %}
+        <h2>Captured Photos</h2>
+        <div>
+            {% for photo in photo_files %}
+                <img src="{{ media_url }}{{ photo }}" alt="Photo" style="max-width:300px; margin:10px;"/>
+            {% endfor %}
+        </div>
+        <p>{{ ai_prompt }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <label>Email: <input type="email" name="email" placeholder="Enter your email"></label>
+            <br><br>
+            <button type="submit" name="action" value="done">Done</button>
+        </form>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="action" value="start">Start Photobooth</button>
+        </form>
+    {% endif %}
+</body>
+</html>

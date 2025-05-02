@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Process Complete</title>
+    <meta http-equiv="refresh" content="5;url={% url 'photobooth' %}" />
+</head>
+<body>
+    <h1>Process Complete</h1>
+    <p>Your photos have been processed and uploaded. The photobooth will restart shortly.</p>
+    <h2>Your S3 URLs:</h2>
+    <ul>
+        {% for url in s3_urls %}
+            <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
